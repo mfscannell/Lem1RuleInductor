@@ -18,6 +18,12 @@ public class Lem1Helper {
         createDStar();
     }
     
+    /**
+     * Checks if the segregated collection of decisions depends upon the supplied collection of
+     * cases segregated upon their common attributes.
+     * @param bStar  A set of subsets of cases who all have the same attributes.
+     * @return  True if the decision depends upon the subsets of cases.
+     */
     public boolean decisionDependsOn(Set<Set<Case>> bStar) {
         boolean dDependsOnB = true;
         
