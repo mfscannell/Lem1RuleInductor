@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.scannell.mark.ruleInduction.interfaces.Case;
 import com.scannell.mark.ruleInduction.interfaces.Decision;
+import com.scannell.mark.util.SetHelper;
 
 public class Lem1Helper {
     private List<Case> cases;
@@ -15,6 +16,28 @@ public class Lem1Helper {
         this.cases = cases;
         
         createDStar();
+    }
+    
+    public boolean decisionDependsOn(Set<Set<Case>> bStar) {
+        boolean dDependsOnB = true;
+        
+        for (Set<Case> bSubset : bStar) {
+            boolean bSubsetFound = false;
+            
+            for (Set<Case> dSubset : dStar) {
+                if (SetHelper.isSubset(bSubset, dSubset)) {
+                    bSubsetFound = true;
+                    break;
+                }
+            }
+            
+            if (!bSubsetFound) {
+                dDependsOnB = false;
+                break;
+            }
+        }
+        
+        return dDependsOnB;
     }
     
     public Set<Set<Case>> getDStar() {
