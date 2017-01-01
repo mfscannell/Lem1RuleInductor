@@ -108,5 +108,7 @@ public class Main {
         cases.add(case5);
         cases.add(case6);
         cases.add(case7);
+        
+        Lem1Helper lem1Solver = new Lem1Helper(cases);
     }
 }

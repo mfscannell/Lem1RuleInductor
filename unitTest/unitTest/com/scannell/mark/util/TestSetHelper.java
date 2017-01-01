@@ -59,6 +59,24 @@ public class TestSetHelper {
         
         assertTrue(result);
     }
+    
+    @Test
+    public void testSubsetNullAndNonEmpty() {
+        String firstString = "1";
+        String secondString = "2";
+        
+        Set<String> firstSet = new HashSet<String>();
+        Set<String> secondSet = new HashSet<String>();
+        
+        firstSet.add(null);
+        
+        secondSet.add(secondString);
+        secondSet.add(firstString);
+        
+        boolean result = SetHelper.isSubset(firstSet, secondSet);
+        
+        assertFalse(result);
+    }
 
     @Test
     public void testSubsetSameNonEmpty() {

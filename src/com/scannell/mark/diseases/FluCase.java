@@ -23,8 +23,12 @@ public class FluCase implements Case {
     }
 
     @Override
-    public Object getDecision() {
+    public Decision getDecision() {
         return decision;
     }
 
+    @Override
+    public boolean haveSaveDecision(Case datum) {
+        return this.decision.equals(datum.getDecision());
+    }
 }
