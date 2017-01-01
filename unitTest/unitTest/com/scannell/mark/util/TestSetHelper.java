@@ -11,7 +11,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.scannell.mark.sampleCase.Case;
+import com.scannell.mark.diseases.FluCase;
+import com.scannell.mark.diseases.FluDecision;
+import com.scannell.mark.ruleInduction.interfaces.Case;
 import com.scannell.mark.util.SetHelper;
 
 public class TestSetHelper {
@@ -135,8 +137,8 @@ public class TestSetHelper {
     
     @Test
     public void testSubsetSimilarObjects() {
-        Case firstCase = new Case(null, "1");
-        Case firstCaseCopy = new Case(null, "1");
+        Case firstCase = new FluCase(null, new FluDecision("1"));
+        Case firstCaseCopy = new FluCase(null, new FluDecision("1"));
         
         Set<Case> firstSet = new HashSet<Case>();
         Set<Case> secondSet = new HashSet<Case>();
@@ -151,7 +153,7 @@ public class TestSetHelper {
     
     @Test
     public void testSubsetSameObject() {
-        Case firstCase = new Case(null, "1");
+        Case firstCase = new FluCase(null, new FluDecision("1"));
         
         Set<Case> firstSet = new HashSet<Case>();
         Set<Case> secondSet = new HashSet<Case>();
