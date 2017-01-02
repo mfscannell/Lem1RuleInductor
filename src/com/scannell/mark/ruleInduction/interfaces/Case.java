@@ -13,5 +13,28 @@ public interface Case {
      * @param datum  A case to see if they have the same decision.
      * @return  True if the two cases have the same decision.
      */
-    public abstract boolean haveSaveDecision(Case datum);
+    public abstract boolean haveSameDecision(Case datum);
+    
+    /**
+     * Get a list of the names of all attributes of the case.
+     * @return  A list of attribute names in string format.
+     */
+    public abstract List<String> getAttributeNames();
+    
+    /**
+     * Get the discretized value of the attribute with the corresponding name.
+     * @param attributeName  The attribute name to get the discretized value for.
+     * @return  The discretized value of the attribute.
+     */
+    public abstract Object getAttributeDiscretizedValue(String attributeName);
+    
+    /**
+     * Checks to see if the two cases have the same attribute values for the specified attribute
+     * names.  All attributes whose names are not supplied in the list of attribute names are
+     * ignored in the comparison.  
+     * @param datum  A second case.
+     * @param attributeName  A list of attribute names.
+     * @return
+     */
+    public abstract boolean haveSameAttributeValues(Case datum, List<String> attributeName);
 }

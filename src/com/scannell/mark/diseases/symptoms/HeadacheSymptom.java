@@ -3,7 +3,7 @@ package com.scannell.mark.diseases.symptoms;
 import com.scannell.mark.ruleInduction.interfaces.Attribute;
 
 public class HeadacheSymptom extends Symptom {
-    private static final String NAME = "Headache";
+    public static final String NAME = "Headache";
     
     public HeadacheSymptom(boolean discretizedValue) {
         this.discretizedValue = discretizedValue;

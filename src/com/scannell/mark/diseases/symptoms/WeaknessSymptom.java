@@ -3,7 +3,7 @@ package com.scannell.mark.diseases.symptoms;
 import com.scannell.mark.ruleInduction.interfaces.Attribute;
 
 public class WeaknessSymptom extends Symptom {
-    private static final String NAME = "Weakness";
+    public static final String NAME = "Weakness";
     
     public WeaknessSymptom(boolean discretizedValue) {
         this.discretizedValue = discretizedValue;

@@ -13,7 +13,7 @@ import com.scannell.mark.ruleInduction.interfaces.Attribute;
 import com.scannell.mark.ruleInduction.interfaces.Case;
 import com.scannell.mark.ruleInduction.interfaces.Decision;
 
-public class FluDataset {
+public class MockFluDataset {
     private static Attribute attribute11 = new TemperatureSymptom("very_high");
     private static Attribute attribute12 = new HeadacheSymptom(true);
     private static Attribute attribute13 = new WeaknessSymptom(true);

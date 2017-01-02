@@ -3,7 +3,7 @@ package com.scannell.mark.diseases.symptoms;
 import com.scannell.mark.ruleInduction.interfaces.Attribute;
 
 public class TemperatureSymptom extends Symptom {
-    private static final String NAME = "Temperature";
+    public static final String NAME = "Temperature";
     
     public TemperatureSymptom(String discretizedValue) {
         this.discretizedValue = discretizedValue;

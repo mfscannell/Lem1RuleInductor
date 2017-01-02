@@ -3,7 +3,7 @@ package com.scannell.mark.diseases;
 import com.scannell.mark.ruleInduction.interfaces.Decision;
 
 public class FluDecision implements Decision {
-    private static final String NAME = "Flu";
+    public static final String NAME = "Flu";
     private Object discretizedValue;
 
     public FluDecision(Object discretizedValue) {

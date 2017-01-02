@@ -46,37 +46,59 @@ public class Lem1Helper {
         return dDependsOnB;
     }
     
+    public Set<Set<Case>> partitionCasesOnCommonAttributes(List<String> attributeNames) {
+        Set<Set<Case>> partitionedCases = new HashSet<Set<Case>>();
+        
+        for (Case unexaminedCase : cases) {
+            if (partitionedCases.isEmpty()) {
+                Set<Case> newSubset = new HashSet<Case>();
+                newSubset.add(unexaminedCase);
+                partitionedCases.add(newSubset);
+            } else {
+                boolean caseWithSameAttributesFound = false;
+                
+                for (Set<Case> existingSubset : partitionedCases) {
+                    Case caseFromExistingSubset = existingSubset.iterator().next();
+                    
+                    //TODO mfs finish out
+                }
+            }
+        }
+        
+        return partitionedCases;
+    }
+    
     public Set<Set<Case>> getDStar() {
         return dStar;
     }
     
     /**
-     * Partition out the cases into subsets such that all cases in each subset have the same decision.
+     * Partition out the cases into subsets such that all cases in each subset have the same decision value.
      */
     private void createDStar() {
         dStar = new HashSet<Set<Case>>();
         
         for (Case unexaminedCase : cases) {
             if (dStar.isEmpty()) {
-                Set<Case> newSubSet = new HashSet<Case>();
-                newSubSet.add(unexaminedCase);
-                dStar.add(newSubSet);
+                Set<Case> newSubset = new HashSet<Case>();
+                newSubset.add(unexaminedCase);
+                dStar.add(newSubset);
             } else {
-                boolean decisionFound = false;
+                boolean caseWithSameDecisionFound = false;
                 
                 for (Set<Case> existingSubset : dStar) {
                     Case caseFromExistingSubset = existingSubset.iterator().next();
                     
-                    if (caseFromExistingSubset.haveSaveDecision(unexaminedCase)) {
+                    if (caseFromExistingSubset.haveSameDecision(unexaminedCase)) {
                         existingSubset.add(unexaminedCase);
-                        decisionFound = true;
+                        caseWithSameDecisionFound = true;
                     }
                 }
                 
-                if (!decisionFound) {
-                    Set<Case> newSubSet = new HashSet<Case>();
-                    newSubSet.add(unexaminedCase);
-                    dStar.add(newSubSet);
+                if (!caseWithSameDecisionFound) {
+                    Set<Case> newSubset = new HashSet<Case>();
+                    newSubset.add(unexaminedCase);
+                    dStar.add(newSubset);
                 }
             }
         }

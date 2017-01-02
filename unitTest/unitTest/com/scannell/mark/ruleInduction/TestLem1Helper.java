@@ -15,7 +15,7 @@ import org.junit.Test;
 import com.scannell.mark.ruleInduction.Lem1Helper;
 import com.scannell.mark.ruleInduction.interfaces.Case;
 
-import mockData.com.scannell.mark.ruleInduction.FluDataset;
+import mockData.com.scannell.mark.ruleInduction.MockFluDataset;
 
 public class TestLem1Helper {
 
@@ -37,7 +37,7 @@ public class TestLem1Helper {
 
     @Test
     public void testDecisionDependsOn1_2_3_4_5_6_7() {
-        List<Case> fluDataset = FluDataset.getDataset();
+        List<Case> fluDataset = MockFluDataset.getDataset();
         Set<Set<Case>> aStar = new HashSet<Set<Case>>();
         
         for (Case datum : fluDataset) {
@@ -55,7 +55,7 @@ public class TestLem1Helper {
 
     @Test
     public void testDecisionDependsOn1_2_36_4_57() {
-        List<Case> fluDataset = FluDataset.getDataset();
+        List<Case> fluDataset = MockFluDataset.getDataset();
         Set<Set<Case>> aStar = new HashSet<Set<Case>>();
         
         Set<Case> subset1 = new HashSet<Case>();
@@ -90,7 +90,7 @@ public class TestLem1Helper {
     
     @Test
     public void testDecisionDependsOn1_2_37_4_56() {
-        List<Case> fluDataset = FluDataset.getDataset();
+        List<Case> fluDataset = MockFluDataset.getDataset();
         Set<Set<Case>> aStar = new HashSet<Set<Case>>();
         
         Set<Case> subset1 = new HashSet<Case>();
