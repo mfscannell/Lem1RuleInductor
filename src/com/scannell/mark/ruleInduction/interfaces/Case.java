@@ -29,12 +29,12 @@ public interface Case {
     public abstract Object getAttributeDiscretizedValue(String attributeName);
     
     /**
-     * Checks to see if the two cases have the same attribute values for the specified attribute
-     * names.  All attributes whose names are not supplied in the list of attribute names are
-     * ignored in the comparison.  
+     * Checks to see if the two cases have the same attribute values for each of the specified 
+     * attribute names.  All attributes whose names are not supplied in the list of attribute names 
+     * are ignored in the comparison.  
      * @param datum  A second case.
      * @param attributeName  A list of attribute names.
      * @return
      */
-    public abstract boolean haveSameAttributeValues(Case datum, List<String> attributeName);
+    public abstract boolean haveSameAttributeValues(Case datum, List<String> attributeNames);
 }

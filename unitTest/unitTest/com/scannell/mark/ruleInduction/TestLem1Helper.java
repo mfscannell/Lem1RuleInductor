@@ -2,7 +2,9 @@ package unitTest.com.scannell.mark.ruleInduction;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +14,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.scannell.mark.diseases.symptoms.HeadacheSymptom;
+import com.scannell.mark.diseases.symptoms.NauseaSymptom;
+import com.scannell.mark.diseases.symptoms.TemperatureSymptom;
+import com.scannell.mark.diseases.symptoms.WeaknessSymptom;
 import com.scannell.mark.ruleInduction.Lem1Helper;
 import com.scannell.mark.ruleInduction.interfaces.Case;
 
@@ -121,5 +127,97 @@ public class TestLem1Helper {
         boolean result = lem1Helper.decisionDependsOn(aStar);
         
         assertFalse(result);
+    }
+    
+    @Test
+    public void testPartitionCasesOnCommonAttributes_TemperatureHeadacheWeaknessNauses() {
+        List<Case> fluDataset = MockFluDataset.getDataset();
+        Lem1Helper lem1Helper = new Lem1Helper(fluDataset);
+        List<String> attributeNames = new ArrayList<String>();
+        attributeNames.add(TemperatureSymptom.NAME);
+        attributeNames.add(HeadacheSymptom.NAME);
+        attributeNames.add(WeaknessSymptom.NAME);
+        attributeNames.add(NauseaSymptom.NAME);
+        
+        Set<Set<Case>> result = lem1Helper.partitionCasesOnCommonAttributes(attributeNames);
+        
+        Iterator<Set<Case>> iterator = result.iterator();
+        
+        assertSame(7, result.size());
+        
+        Set<Case> subset = iterator.next();
+        assertSame(1, subset.size());
+        assertSame(fluDataset.get(6), subset.iterator().next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        assertSame(fluDataset.get(1), subset.iterator().next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        assertSame(fluDataset.get(0), subset.iterator().next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        assertSame(fluDataset.get(4), subset.iterator().next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        assertSame(fluDataset.get(2), subset.iterator().next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        assertSame(fluDataset.get(3), subset.iterator().next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        assertSame(fluDataset.get(5), subset.iterator().next());
+        
+        assertFalse(iterator.hasNext());
+    }
+    
+    @Test
+    public void testPartitionCasesOnCommonAttributes_HeadacheWeaknessNauses() {
+        List<Case> fluDataset = MockFluDataset.getDataset();
+        Lem1Helper lem1Helper = new Lem1Helper(fluDataset);
+        List<String> attributeNames = new ArrayList<String>();
+        attributeNames.add(HeadacheSymptom.NAME);
+        attributeNames.add(WeaknessSymptom.NAME);
+        attributeNames.add(NauseaSymptom.NAME);
+        
+        Set<Set<Case>> result = lem1Helper.partitionCasesOnCommonAttributes(attributeNames);
+        
+        Iterator<Set<Case>> iterator = result.iterator();
+        
+        assertSame(5, result.size());
+        
+        Set<Case> subset = iterator.next();
+        assertSame(1, subset.size());
+        Iterator<Case> subsetIterator = subset.iterator();
+        assertSame(fluDataset.get(1), subsetIterator.next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        subsetIterator = subset.iterator();
+        assertSame(fluDataset.get(0), subsetIterator.next());
+        
+        subset = iterator.next();
+        assertSame(2, subset.size());
+        subsetIterator = subset.iterator();
+        assertSame(fluDataset.get(6), subsetIterator.next());
+        assertSame(fluDataset.get(4), subsetIterator.next());
+        
+        subset = iterator.next();
+        assertSame(2, subset.size());
+        subsetIterator = subset.iterator();
+        assertSame(fluDataset.get(2), subsetIterator.next());
+        assertSame(fluDataset.get(5), subsetIterator.next());
+        
+        subset = iterator.next();
+        assertSame(1, subset.size());
+        subsetIterator = subset.iterator();
+        assertSame(fluDataset.get(3), subsetIterator.next());
+        
+        assertFalse(iterator.hasNext());
     }
 }

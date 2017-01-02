@@ -61,6 +61,17 @@ public class Lem1Helper {
                     Case caseFromExistingSubset = existingSubset.iterator().next();
                     
                     //TODO mfs finish out
+                    if (caseFromExistingSubset.haveSameAttributeValues(unexaminedCase, attributeNames)) {
+                        existingSubset.add(unexaminedCase);
+                        caseWithSameAttributesFound = true;
+                        break;
+                    }
+                }
+                
+                if (!caseWithSameAttributesFound) {
+                    Set<Case> newSubset = new HashSet<Case>();
+                    newSubset.add(unexaminedCase);
+                    partitionedCases.add(newSubset);
                 }
             }
         }
@@ -92,6 +103,7 @@ public class Lem1Helper {
                     if (caseFromExistingSubset.haveSameDecision(unexaminedCase)) {
                         existingSubset.add(unexaminedCase);
                         caseWithSameDecisionFound = true;
+                        break;
                     }
                 }
                 
