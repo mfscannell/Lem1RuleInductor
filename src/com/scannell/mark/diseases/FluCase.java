@@ -52,8 +52,14 @@ public class FluCase implements Case {
         return this.decision.equals(datum.getDecision());
     }
 
-    @Override
-    public List<String> getAttributeNames() {
+    public static List<String> getAttributeNames() {
+        List<String> attributeNames = new ArrayList<String>();
+        
+        attributeNames.add(HeadacheSymptom.NAME);
+        attributeNames.add(NauseaSymptom.NAME);
+        attributeNames.add(TemperatureSymptom.NAME);
+        attributeNames.add(WeaknessSymptom.NAME);
+        
         return attributeNames;
     }
 

@@ -1,9 +1,11 @@
 package com.scannell.mark.ruleInduction;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.scannell.mark.diseases.FluCase;
 import com.scannell.mark.ruleInduction.interfaces.Case;
 import com.scannell.mark.ruleInduction.interfaces.Decision;
 import com.scannell.mark.util.SetHelper;
@@ -46,6 +48,12 @@ public class Lem1Helper {
         return dDependsOnB;
     }
     
+    /**
+     * Segregate all cases into subsets such that all cases in each subset have the same attribute
+     * value for each of the attributes supplied.
+     * @param attributeNames  A list of attribute names to partition the cases on.
+     * @return  A set of sets of cases.
+     */
     public Set<Set<Case>> partitionCasesOnCommonAttributes(List<String> attributeNames) {
         Set<Set<Case>> partitionedCases = new HashSet<Set<Case>>();
         
@@ -60,7 +68,6 @@ public class Lem1Helper {
                 for (Set<Case> existingSubset : partitionedCases) {
                     Case caseFromExistingSubset = existingSubset.iterator().next();
                     
-                    //TODO mfs finish out
                     if (caseFromExistingSubset.haveSameAttributeValues(unexaminedCase, attributeNames)) {
                         existingSubset.add(unexaminedCase);
                         caseWithSameAttributesFound = true;
@@ -77,6 +84,21 @@ public class Lem1Helper {
         }
         
         return partitionedCases;
+    }
+    
+    public List<String> generateGlobalCovering() {
+        final List<String> allAttributeNames = FluCase.getAttributeNames();
+        Set<Set<Case>> aStar = this.partitionCasesOnCommonAttributes(allAttributeNames);
+        List<String> globalCovering = new ArrayList<String>();
+        
+        if (this.decisionDependsOn(aStar)) {
+            for (String attribute : allAttributeNames) {
+                
+            }
+        }
+        //TODO
+        
+        return globalCovering;
     }
     
     public Set<Set<Case>> getDStar() {

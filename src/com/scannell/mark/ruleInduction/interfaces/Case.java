@@ -16,12 +16,6 @@ public interface Case {
     public abstract boolean haveSameDecision(Case datum);
     
     /**
-     * Get a list of the names of all attributes of the case.
-     * @return  A list of attribute names in string format.
-     */
-    public abstract List<String> getAttributeNames();
-    
-    /**
      * Get the discretized value of the attribute with the corresponding name.
      * @param attributeName  The attribute name to get the discretized value for.
      * @return  The discretized value of the attribute.
